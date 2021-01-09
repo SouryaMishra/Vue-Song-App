@@ -20,7 +20,6 @@ module.exports = {
                 default:
                     res.status(400).send({error : "Failed to register due to invalid details provided, try again"})
             }
-            res.status(400).send({error});
         }
         else next();
     }

@@ -5,8 +5,8 @@
             <input type = "password" name = "password" placeholder = "Enter password" v-model = "password" required />
             <button @click = "register">Register</button>
         </form>
-        <h1 v-if = "message">{{message}}</h1>
-        <h1 v-else>Enter required fields</h1>
+        <p v-if = "message">{{message}}</p>
+        <p v-if = "error" class = "error">{{error}}</p>
     </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
     data: () => ({
         email: "",
         password: "",
-        message : ""
+        message : "",
+        error : ""
     }),
     methods:{
          async register(e) {
@@ -26,7 +27,7 @@ export default {
             this.message = message;
             }
             catch(err) {
-                console.log(err);
+                this.error = err.response.data.error;
             }
         }
     }
@@ -45,5 +46,11 @@ form{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+.error{
+    color: red;
+    background: rgba(241, 71, 71, 0.2);
+    border: 1px solid red;
+    padding: 0.5rem;
 }
 </style>

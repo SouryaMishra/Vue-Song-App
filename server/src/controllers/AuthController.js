@@ -6,10 +6,10 @@ module.exports =  {
                     req.body.password = req.body.password || null;
                     try {
                         const user = await userService.addUser(req.body);
-                        res.send(user);
+                        res.send({user, message : "Registration Successful, please login"});
                     }
                     catch(err) {
-                        res.status(400).send({error : err, message : "Email already in use"});
+                        res.status(400).send({error : "Email already in use"});
                     }
                 }
             }
